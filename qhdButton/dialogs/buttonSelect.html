@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>选择按钮的类型</title>
+<style>
+*{margin:0; padding:0; border:none; list-style:none;}
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+.clearfix{*zoom:1;}
+
+.button_box { background-color:#fff; padding:10px; width:620px; }
+.button_box_hd h4 { font-weight:bold; font-size:12px; margin-bottom:10px;}
+
+.button_box_row { margin-bottom:15px;}
+.button_box_item { padding:6px; border:1px solid #e5e5e5; border-radius:5px; float:left; display:inline; margin-right:15px; }
+
+.item_select{ background:#ffe783; }
+.item_hover{ border-color:#f30; }
+</style>
+<link href="../../../css/content.css" rel="stylesheet" type="text/css">
+<script>
+	// element has class
+	function hasClass(element,className) {
+		return element.className.match(new RegExp('(\\s|^)'+className+'(\\s|$)'));
+	}
+	// add class
+	function addClass(element,className) {
+		if (!this.hasClass(element,className)) element.className += " "+className;
+	}	
+	// remove class
+	function removeClass(element,className) {
+		if (hasClass(element,className)) {
+			var reg = new RegExp('(\\s|^)'+className+'(\\s|$)');
+			element.className=element.className.replace(reg,' ');
+		}
+	}
+	
+	// get element by class
+	function getByClass (className, parent) {
+	  parent || (parent=document);
+	  var descendants=parent.getElementsByTagName('*'), i=-1, e, result=[];
+	  while (e=descendants[++i]) {
+		((' '+(e['class']||e.className)+' ').indexOf(' '+className+' ') > -1) && result.push(e);
+	  }
+	  return result;
+	}
+	
+
+	/*function test(){  
+		alert(1);
+		alert( window.parent.window.CKEDITOR.basePath ); 	//获取ckeditor的基本路径，获取父窗口的全局变量的值 : window.parent.window.globalName
+		var txt = window.parent.document.getElementById("txt").innerHTML;	//获取父窗口的html值
+		alert(txt);
+	}*/
+	
+	//加载 
+	window.onload=function(){ 
+		var buttonBox = document.getElementById('button_box');
+		var buttonBoxItem = getByClass('button_box_item', buttonBox);
+		var buttonClassElement = getByClass('button_class', window.parent.document),			
+			buttonClassElement = buttonClassElement[0].getElementsByTagName('input')[0];
+		
+		for(var i=0; i<buttonBoxItem.length; i++){
+			buttonBoxItem[i].onmouseover=function(){
+				//alert( this.innerHTML );
+				for(var i=0; i<buttonBoxItem.length; i++){ removeClass(buttonBoxItem[i],'item_hover') }	//先全部移除class
+				addClass(this,'item_hover');
+			}
+			buttonBoxItem[i].onmouseout=function(){			
+				for(var i=0; i<buttonBoxItem.length; i++){ removeClass(buttonBoxItem[i],'item_hover') }
+			}
+			
+			//点击事件
+			buttonBoxItem[i].children[0].onclick=function(){
+				for(var i=0; i<buttonBoxItem.length; i++){ removeClass(buttonBoxItem[i],'item_select') }				
+				addClass(this.parentNode,'item_select');				
+				
+				var buttonClass = this.getAttribute('class') ? this.getAttribute('class') : this.getAttribute('className') ;				
+				buttonClassElement.value = buttonClass;
+				// alert( buttonClassElement );
+			}
+		}
+		
+	}
+	
+	 
+</script> 
+</head>
+
+<body>
+<!-- <form id="buttonClassForm">
+	<input type="hidden" id="buttonClassValue" >
+</form> -->
+<div id="button_box" class="button_box">
+	<div class="button_box_hd">
+		<h4>选择按钮类型</h4>
+    </div>
+    <div class="button_box_bd">
+    	<div class="button_box_row clearfix">
+        	<div class="button_box_item">
+            	<a href="javascript:" class="btn-small btn-small-norm"><span>默认按钮</span></a>
+            </div>
+            <div class="button_box_item">
+            	<a href="javascript:" class="btn-small btn-small-main"><span>主要按钮</span></a>
+            </div>
+            <div class="button_box_item">
+            	<a href="javascript:" class="btn-small btn-small-assist"><span>次要按钮</span></a>
+            </div>
+			<div class="button_box_item">
+            	<a href="javascript:" class="btn-small btn-small-match"><span>搭配按钮</span></a>
+            </div>
+        </div>
+        
+        <div class="button_box_row clearfix">
+        	<div class="button_box_item">
+            	<a href="javascript:" class="btn-medium btn-medium-norm"><span>默认按钮</span></a>
+            </div>
+            <div class="button_box_item">
+            	<a href="javascript:" class="btn-medium btn-medium-main"><span>主要按钮</span></a>
+            </div>
+            <div class="button_box_item">
+            	<a href="javascript:" class="btn-medium btn-medium-assist"><span>次要按钮</span></a>
+            </div>
+			<div class="button_box_item">
+				<a href="javascript:" class="btn-medium btn-medium-match"><span>搭配按钮</span></a>
+			</div>
+        </div>
+        
+        <div class="button_box_row clearfix">
+        	<div class="button_box_item">
+            	<a href="javascript:" class="btn-large btn-large-norm"><span>默认按钮</span></a>
+            </div>
+            <div class="button_box_item">
+            	<a href="javascript:" class="btn-large btn-large-main"><span>主要按钮</span></a>
+            </div>
+            <div class="button_box_item">
+            	<a href="javascript:" class="btn-large btn-large-assist"><span>次要按钮</span></a>
+            </div>
+			<div class="button_box_item">
+				<a href="javascript:" class="btn-large btn-large-match"><span>搭配按钮</span></a>
+			</div>
+        </div>
+        
+    </div>
+	
+</div>	
+</body>
