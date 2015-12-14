@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ckeditor - 自定义按钮插件</title>
+<script language="javascript" src="ckeditor.js"></script>
+<style type="text/css">
+body { font:12px/1.5 Arial, Helvetica, sans-serif;}
+.b { font-weight:bold;}
+.red_fonts { color:#f30;}
+
+</style>
+</head>
+
+<body>
+<div id="preContent">
+	<textarea id="editor1" name="editor1">
+    	<div class="test">
+        	<p><span class="b">Ckeditor</span>的初始化内容，作为textarea的<span class="red_fonts">value</span>值.</p>
+        </div>
+        <p>这里是静态html编辑区域</p>		
+    </textarea>
+    <input type="button" value="获取Ckeditor的html内容" onclick="GetContents();">
+</div>
+
+<script type="text/javascript">
+	
+	CKEDITOR.replace( 'editor1' );
+	
+	
+	//获取Ckeditor的html内容
+	function GetContents(){
+		var oEditor = CKEDITOR.instances.editor1;
+		alert( oEditor.getData() );
+	}
+	
+</script>
+</body>
+</html>
