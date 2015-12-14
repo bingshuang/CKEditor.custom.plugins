@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Ckeditor.custom.plugins by sufangyu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Ckeditor.custom.plugins</h1>
+      <h2 class="project-tagline">CKEditor 自定义插件</h2>
+      <a href="https://github.com/sufangyu/CKEditor.custom.plugins" class="btn">View on GitHub</a>
+      <a href="https://github.com/sufangyu/CKEditor.custom.plugins/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/sufangyu/CKEditor.custom.plugins/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="ckeditorcustomplugins" class="anchor" href="#ckeditorcustomplugins" aria-hidden="true"><span class="octicon octicon-link"></span></a>CKEditor.custom.plugins</h1>
+
+<p>基于CKEditor编辑器开发的插件，主要包括的插件有：</p>
+
+<ul>
+<li>多列  （plugins/qhdColumn）</li>
+<li>按钮  （plugins/qhdButton）</li>
+<li>列表  （plugins/qhdList）</li>
+</ul>
+
+<p><strong>说明</strong></p>
+
+<ul>
+<li>CKEditor 是3.6.5版本</li>
+</ul>
+
+<h3>
+<a id="安装" class="anchor" href="#%E5%AE%89%E8%A3%85" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装</h3>
+
+<p><strong>1、HTML</strong></p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>preContent<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">textarea</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>editor1<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>editor1<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>test<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">p</span>&gt;Ckeditor的初始化内容，作为textarea的value值.&lt;/<span class="pl-ent">p</span>&gt;
+        &lt;/<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">p</span>&gt;这里是静态html编辑区域&lt;/<span class="pl-ent">p</span>&gt;      
+    &lt;/<span class="pl-ent">textarea</span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>获取Ckeditor的html内容<span class="pl-pds">"</span></span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>GetContents();<span class="pl-pds">"</span></span>&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p><strong>2、javascript</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">&lt;</span>script language<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>javascript<span class="pl-pds">"</span></span> src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>ckeditor.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre></div>
+
+<p><strong>3、配置config.js</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">CKEDITOR</span>.<span class="pl-en">editorConfig</span> <span class="pl-k">=</span> <span class="pl-k">function</span>( <span class="pl-smi">config</span> )
+{   
+    <span class="pl-smi">config</span>.<span class="pl-smi">uiColor</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>#ddd<span class="pl-pds">'</span></span>;
+    <span class="pl-smi">config</span>.<span class="pl-smi">bodyClass</span> <span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>qhd-content<span class="pl-pds">'</span></span>;    <span class="pl-c">//为body添加外层控制样式Class</span>
+    <span class="pl-smi">config</span>.<span class="pl-smi">contentsCss</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>css/style.css<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>css/content.css<span class="pl-pds">'</span></span>];  <span class="pl-c">//引入css，其中content.css是必须有</span>
+    <span class="pl-smi">config</span>.<span class="pl-c1">toolbar</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Cms<span class="pl-pds">'</span></span>;
+    <span class="pl-smi">config</span>.<span class="pl-smi">toolbar_Cms</span> <span class="pl-k">=</span>
+    [
+        [<span class="pl-s"><span class="pl-pds">'</span>Source<span class="pl-pds">'</span></span>], 
+        [<span class="pl-s"><span class="pl-pds">'</span>qhdColumnTwo<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>qhdColumnThree<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>qhdColumnFour<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>qhdColumnFive<span class="pl-pds">'</span></span>],<span class="pl-c">//配置工具栏</span>
+        [<span class="pl-s"><span class="pl-pds">'</span>NumberedList<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>qhdList<span class="pl-pds">'</span></span>,<span class="pl-s"><span class="pl-pds">'</span>qhdButton<span class="pl-pds">'</span></span>],
+    ];  
+    <span class="pl-smi">config</span>.<span class="pl-smi">extraPlugins</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>qhdColumn,qhdList,qhdButton<span class="pl-pds">'</span></span>;    <span class="pl-c">//引入插件</span>
+};
+</pre></div>
+
+<h3>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h3>
+
+<p>MIT </p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/sufangyu/CKEditor.custom.plugins">Ckeditor.custom.plugins</a> is maintained by <a href="https://github.com/sufangyu">sufangyu</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
